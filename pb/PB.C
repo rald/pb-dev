@@ -94,6 +94,7 @@ int main(int argc, char *argv[]) {
   char op;
   char ch;
 	int depth;
+  unsigned char pocket = 0;
 
   for (i = 0; i < MEM_MAX; i++) {
     m[i] = 0;
@@ -181,7 +182,7 @@ int main(int argc, char *argv[]) {
         cs[csp++] = cp;
         cp = ps[id] - 1;
  				break;
-			case ')':
+      case ')':
 			case ';':
 				if (csp > 0) {
           cp = cs[--csp];
@@ -191,6 +192,13 @@ int main(int argc, char *argv[]) {
           return 1;
         }
 				break;
+      case '$':
+        if(pocket==0) {
+          pocket=m[mp];
+        } else {
+          m[mp]=pocket;
+        }
+        break;
   		case '@':
   			free(c);
   			return m[mp];
@@ -203,4 +211,3 @@ int main(int argc, char *argv[]) {
   free(c);
   return 0;
 }
-
