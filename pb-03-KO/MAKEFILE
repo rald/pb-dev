@@ -1,0 +1,7 @@
+all: pb
+
+pb:
+  tcc -ms pb
+
+clean:
+  del pb
